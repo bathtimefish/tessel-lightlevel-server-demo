@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>web socket client</title>
+ <style>
+  .pane { margin: 1em; }
+  #lightlevel { font-size: 2em; font-weight:bold; }
+ </style>
+</head>
+<body>
+<div>
+<h1>Ambient Light Level</h1>
+<div class="pane"><span id="lightlevel">0</span></div>
+<div><button id="disconnect">Disconnect</button></div>
+<script>
+
+var serverIp = "[WS server IP]";
+var serverPort = "[WS server port]";
+var serverUri = "ws://"+serverIp+":"+serverPort+"/";
+
+var ws = new WebSocket(serverUri);
+
+var elLightlevel = document.getElementById("lightlevel");
+
+ws.onopen = function(ev) {
+	console.log("Connected!");
+};
+
+ws.onmessage = function(ev) {
+	console.log(ev.data);
+	elLightlevel.textContent = ev.data;
+};
+
+ws.onclose = function(ev) {
+	console.log("Connection closed!");
+};
+
+ws.onerror = function(err) {
+	console.log("WebSocket Error " + err);
+};
+
+var send = function() {
+	ws.send("Hello");
+};
+
+var disconnect = function() {
+	ws.close();
+	delete(ws);
+};
+
+document.getElementById("disconnect").addEventListener('click', function() {
+  disconnect();
+}, false);
+
+</script>
+
+</body>
+</html>

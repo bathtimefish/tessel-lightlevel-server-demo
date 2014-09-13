@@ -1,0 +1,16 @@
+{
+  "name": "tessel-lightlevel-server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "nodejs-websocket": "~1.0.0",
+    "ambient-attx4": "~0.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bathtimefish",
+  "license": "MIT"
+}
